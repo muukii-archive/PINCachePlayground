@@ -10,7 +10,7 @@ public class DataCache {
 
   public init(name: String, rootPath: String? = nil) {
     if let rootPath = rootPath {
-      self.store = PINCache(name: name, rootPath: rootPath)
+      self.store = PINCache(name: name, rootPath: rootPath, fileExtension: nil)
     } else {
       self.store = PINCache(name: name)
     }
@@ -18,8 +18,8 @@ public class DataCache {
 
   public func save(_ data: Data, forKey: String, completion: @escaping (_ key: String, _ data: Data) -> Void = { _ in }) {
 
-    store.setObject(data as NSData, forKey: forKey) { (cache, key, object) in
-      completion(key, data)
+    store.setObjectAsync(data as NSData, forKey: forKey) { (_, key, data) in
+      completion(key, data as! Data)
     }
   }
 
@@ -34,15 +34,21 @@ public class DataCache {
     }
     return data
   }
+
+  public func purge() {
+    store.removeAllObjects()
+  }
 }
 
 let store = DataCache(name: "me")
+store.purge()
 
 let responseJSON = "{}"
 let data = responseJSON.data(using: .utf8)!
 
 store.save(data, forKey: "me") { (key, data) in
   print(key, data)
+  print(store.data(forKey: "me"))
 }
 
 print(store.data(forKey: "me"))

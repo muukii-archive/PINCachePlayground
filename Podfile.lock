@@ -1,12 +1,30 @@
 PODS:
-  - PINCache (2.3)
+  - PINCache (3.0.1-beta.3):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.3)
+    - PINCache/Core (= 3.0.1-beta.3)
+  - PINCache/Arc-exception-safe (3.0.1-beta.3):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.3):
+    - PINOperation (= 1.0.3)
+  - PINOperation (1.0.3)
 
 DEPENDENCIES:
-  - PINCache
+  - PINCache (from `https://github.com/pinterest/PINCache.git`, tag `3.0.1-beta.4`)
+
+EXTERNAL SOURCES:
+  PINCache:
+    :git: https://github.com/pinterest/PINCache.git
+    :tag: 3.0.1-beta.4
+
+CHECKOUT OPTIONS:
+  PINCache:
+    :git: https://github.com/pinterest/PINCache.git
+    :tag: 3.0.1-beta.4
 
 SPEC CHECKSUMS:
-  PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
+  PINCache: e77c2d484fc4d1eb8c4f9a48647a0202b6f415b2
+  PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
 
-PODFILE CHECKSUM: 9329547fe1a1cdb67183f0b404abbad18c561bf5
+PODFILE CHECKSUM: 3c82da0b4ca1f531de287ddabe4428d65d4cac7a
 
 COCOAPODS: 1.2.0
